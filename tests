@@ -1,0 +1,72 @@
+import pytest
+
+##### Тест №1. Параметризованный тест TUPLE #####
+
+@pytest.mark.parametrize("input_1, expected_1", [("1+2", 3), ("3+4", 7), ("5-6", -1), ("7*8", 56)])
+
+def test_eval(input_1, expected_1):
+    assert eval(input_1) == expected_1
+
+
+
+##### Тест №2. Негативный тест без ошибки TUPLE #####
+
+@pytest.mark.parametrize("input_2, expected_2", [("1+2", "3"), ("3+4", 7), ("5-6", -1), ("7*8", 56)])
+
+def test_eval(input_2, expected_2):
+    try:
+        assert eval(input_2) == expected_2
+    except AssertionError:
+        pass
+
+
+
+##### Тест №3. Простой тест TUPLE #####
+
+t = (2,4,6,8,10,)
+
+def tuple(t):
+    return t
+
+def test_tuple():
+    assert tuple(t)
+
+
+
+##### Тест №4. Параметризованный тест dict #####
+
+@pytest.mark.parametrize("data, value",
+                         [({"username": "user1", "password": "pass!"}, "value"),
+                          ({"username": "user2", "password": "pass!"}, "value")])
+
+def test_4(data, value):
+    assert isinstance(data, dict)
+    assert value == "value"
+
+
+
+##### Тест №5. Негативный тест без ошибки dict #####
+
+@pytest.mark.parametrize("data, value",
+                         [({"username": "user1", "password": "pass!"}, "value"),
+                          ({"username": "user2", "password": "pass!"}, "ERROR_value")])
+
+def test_5(data, value):
+    assert isinstance(data, dict)
+    try:
+        assert value == "value"
+    except AssertionError:
+        pass
+
+
+
+
+##### Тест №6. Тест dict #####
+
+d = {"username": "user1", "password": "pass!"}
+
+def dictionary(d):
+    return d
+
+def test_dictionary():
+    assert dictionary(d)
